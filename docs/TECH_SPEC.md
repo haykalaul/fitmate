@@ -1,5 +1,18 @@
 # 🧩 FitMate App – Technical Specification Document
 
+## 📅 Versi Dokumen
+
+Versi: 1.0
+
+Tanggal: 6 Oktober 2025
+
+Project Manager: Haykal Aulil Albab
+System Analyst: Lidya Marcelena 
+Frontend PIC: Muhammad Dzaki Salman
+Backend/ DB PIC: Adhityandi Anggara Putra 
+UI/UX Design: Nahdah Vania Salsabilla M.
+QA Tester: Titania Nur Larissa
+
 ## 📘 Overview
 **FitMate** adalah aplikasi mobile berbasis **Flutter** dengan backend **Laravel** dan database **PostgreSQL**, dirancang untuk membantu pengguna menjaga gaya hidup sehat melalui fitur **AI Chat**, **Food Scanner**, **Gym Finder**, dan **Health News**.
 
