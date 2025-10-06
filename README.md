@@ -19,7 +19,7 @@ Make sure you have the following tools installed on your machine:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Abdallah-Salama2/Flutter-Laravel-API-Project
+git clone https://github.com/haykalaul/fitmate
 cd your-project
 ```
 2.Run the localhost server
