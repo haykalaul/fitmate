@@ -1,0 +1,70 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches:
+      - develop
+      - 'feature/*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  flutter-ci:
+    name: Lint, Test & Build Flutter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: flutter pub get
+
+      - name: Analyze code (Lint)
+        working-directory: frontend
+        run: flutter analyze
+
+      - name: Run tests
+        working-directory: frontend
+        run: flutter test --coverage
+
+      - name: Build APK (Debug)
+        if: github.ref != 'refs/heads/main'
+        working-directory: frontend
+        run: flutter build apk --debug
+
+  release-build:
+    name: Build & Upload Release APK
+    runs-on: ubuntu-latest
+    needs: flutter-ci
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: flutter pub get
+
+      - name: Build APK (Release)
+        working-directory: frontend
+        run: flutter build apk --release
+
+      - name: Upload artifact (release APK)
+        uses: actions/upload-artifact@v4
+        with:
+          name: FitMate-Release-APK
+          path: frontend/build/app/outputs/flutter-apk/app-release.apk
